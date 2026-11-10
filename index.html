@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Instagram Creator Guidance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f7f6f2;
+      --paper-2: #efeee8;
+      --ink: #171717;
+      --muted: #62615d;
+      --line: #d5d2c9;
+      --card: #ffffff;
+      --accent: #e54162;
+      --accent-2: #f1b62b;
+      --accent-soft: #fde8ed;
+      --green: #147d64;
+      --green-soft: #dff2eb;
+      --blue: #2762d5;
+      --blue-soft: #e6eefc;
+      --warn: #9b5b00;
+      --warn-soft: #fff0cf;
+      --shadow: 0 10px 35px rgba(31, 28, 22, .08);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #121210;
+        --paper-2: #1b1b18;
+        --ink: #f3f1eb;
+        --muted: #b4b0a6;
+        --line: #393832;
+        --card: #20201c;
+        --accent: #ff6b85;
+        --accent-2: #f5c550;
+        --accent-soft: #3f242b;
+        --green: #73d4ba;
+        --green-soft: #183a31;
+        --blue: #8aafff;
+        --blue-soft: #202e4b;
+        --warn: #f0bd65;
+        --warn-soft: #3a2b16;
+        --shadow: 0 12px 34px rgba(0,0,0,.28);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", sans-serif; line-height: 1.55; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    .layout { display: grid; grid-template-columns: 255px minmax(0, 1fr); max-width: 1480px; margin: 0 auto; }
+    aside { position: sticky; top: 0; height: 100dvh; overflow-y: auto; border-right: 1px solid var(--line); padding: 30px 22px 22px; display: flex; flex-direction: column; gap: 22px; background: var(--paper); }
+    .aside-label { font-size: 12px; color: var(--muted); letter-spacing: .05em; margin-bottom: 8px; }
+    nav { display: grid; gap: 1px; }
+    nav a { text-decoration: none; font-size: 13px; padding: 6px 10px; border-radius: 8px; color: var(--muted); border-left: 2px solid transparent; }
+    nav a:hover, nav a.active { color: var(--ink); background: var(--paper-2); border-left-color: var(--accent); }
+    .aside-foot { margin-top: auto; font-size: 12px; color: var(--muted); }
+    main { min-width: 0; }
+    .hero { padding: 70px clamp(24px, 5vw, 82px) 46px; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; width: 220px; height: 220px; border: 46px solid var(--accent-2); border-radius: 50%; right: -95px; top: -100px; opacity: .92; pointer-events: none; }
+    .hero-meta { color: var(--accent); font-weight: 700; font-size: 13px; margin-bottom: 20px; }
+    h1, h2, h3 { margin: 0; }
+    h1 { font-family: "Newsreader", serif; font-size: clamp(48px, 7vw, 92px); line-height: .94; letter-spacing: -.045em; max-width: 900px; }
+    .lede { max-width: 790px; font-size: clamp(18px, 2vw, 23px); line-height: 1.45; margin: 28px 0 0; color: var(--muted); }
+    .stamp-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+    .stamp { border: 1px solid var(--line); background: var(--card); padding: 8px 11px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .toolbar { position: sticky; top: 0; z-index: 10; padding: 12px clamp(24px, 5vw, 82px); background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+    .search { flex: 1; position: relative; }
+    .search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    .search input { width: 100%; padding: 11px 13px 11px 39px; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 10px; outline: none; }
+    .search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .filter { border: 1px solid var(--line); background: var(--card); border-radius: 10px; padding: 10px 12px; cursor: pointer; white-space: nowrap; }
+    .filter[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .content { padding: 54px clamp(24px, 5vw, 82px) 100px; }
+    .section { scroll-margin-top: 86px; margin-bottom: 76px; }
+    .section-head { display: grid; grid-template-columns: 120px 1fr; gap: 18px; align-items: baseline; margin-bottom: 26px; }
+    .section-no { color: var(--accent); font-weight: 700; font-size: 13px; }
+    h2 { font-family: "Newsreader", serif; font-size: clamp(34px, 4.5vw, 54px); line-height: 1; letter-spacing: -.025em; }
+    h3 { font-size: 18px; line-height: 1.28; }
+    .essentials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .essential { background: var(--ink); color: var(--paper); border-radius: 20px 20px 20px 5px; padding: 24px; min-height: 205px; display: flex; flex-direction: column; }
+    .essential:nth-child(2) { background: var(--accent); color: #fff; border-radius: 20px 5px 20px 20px; }
+    .essential:nth-child(3) { background: var(--accent-2); color: #171717; border-radius: 5px 20px 20px 20px; }
+    .big { font-family: "Newsreader", serif; font-size: 34px; line-height: 1.02; margin: auto 0 8px; }
+    .essential p { margin: 0; font-size: 14px; opacity: .84; }
+    .callout { padding: 22px 24px; background: var(--blue-soft); border-radius: 5px 18px 18px 18px; margin-top: 15px; }
+    .callout strong { color: var(--blue); }
+    .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .card.wide { grid-column: 1 / -1; }
+    .card p { margin: 9px 0 0; color: var(--muted); }
+    .card ul { margin: 14px 0 0; padding-left: 20px; }
+    .card li + li { margin-top: 8px; }
+    .quote { font-family: "Newsreader", serif; font-size: 23px; line-height: 1.34; color: var(--ink) !important; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; font-size: 11px; font-weight: 700; border-radius: 999px; margin-bottom: 12px; }
+    .badge.verified { color: var(--green); background: var(--green-soft); }
+    .badge.index { color: var(--warn); background: var(--warn-soft); }
+    .source { display: inline-block; margin-top: 16px; font-size: 12px; font-weight: 600; color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+    .signal-table { border-top: 1px solid var(--line); }
+    .signal-row { display: grid; grid-template-columns: 165px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .signal-row strong { font-size: 14px; }
+    .signal-row p { margin: 0; color: var(--muted); }
+    .priority { display: inline-block; min-width: 24px; color: var(--accent); }
+    .timeline { position: relative; padding-left: 26px; display: grid; gap: 16px; }
+    .timeline::before { content:""; position: absolute; left: 5px; top: 9px; bottom: 9px; width: 2px; background: var(--line); }
+    .event { position: relative; }
+    .event::before { content:""; position:absolute; width: 11px; height: 11px; border-radius: 50%; left: -26px; top: 7px; background: var(--accent); border: 3px solid var(--paper); }
+    .event time { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .event p { margin: 4px 0 0; }
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .column { padding: 24px; border-radius: 16px; }
+    .column.do { background: var(--green-soft); }
+    .column.dont { background: var(--accent-soft); }
+    .column h3 { margin-bottom: 12px; }
+    .column ul { margin: 0; padding-left: 20px; }
+    .column li + li { margin-top: 8px; }
+    .step { display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: start; padding: 17px 0; border-bottom: 1px solid var(--line); }
+    .step:last-child { border-bottom: 0; }
+    .step-num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: var(--paper); font-weight: 700; }
+    .step p { margin: 4px 0 0; color: var(--muted); }
+    .note { border: 1px dashed var(--line); padding: 17px 18px; border-radius: 12px; color: var(--muted); font-size: 14px; }
+    .myth { display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .myth:last-child { border-bottom: 0; }
+    .verdict { color: var(--accent); font-weight: 700; font-size: 13px; }
+    .myth p { margin: 0; }
+    .sources { display: grid; gap: 0; }
+    .source-row { display: grid; grid-template-columns: 94px minmax(180px, .8fr) minmax(260px, 1.4fr) auto; align-items: start; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .source-row:last-child { border-bottom: 0; }
+    .source-row a { color: var(--blue); font-size: 13px; }
+    .source-row p { margin: 0; font-size: 13px; color: var(--muted); }
+    .source-row .badge { width: max-content; margin: 0; }
+    .hidden { display: none !important; }
+    .empty { display: none; padding: 50px 0; color: var(--muted); text-align: center; }
+    .empty.show { display: block; }
+    .mobile-nav { display: none; }
+    footer { color: var(--muted); font-size: 13px; padding-top: 26px; border-top: 1px solid var(--line); }
+    @media (max-width: 900px) {
+      .layout { display: block; }
+      aside { display: none; }
+      .hero { padding-top: 48px; }
+      .hero::after { width: 150px; height: 150px; border-width: 32px; right: -75px; top: -74px; }
+      .mobile-nav { display: flex; flex-wrap: wrap; gap: 7px; padding: 12px 24px; border-bottom: 1px solid var(--line); }
+      .mobile-nav a { color: var(--muted); text-decoration: none; white-space: nowrap; border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; font-size: 12px; }
+      .toolbar { top: 0; padding-left: 24px; padding-right: 24px; }
+      .filter .full { display: none; }
+      .source-row { grid-template-columns: 94px 1fr auto; }
+      .source-row p { grid-column: 2 / -1; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 40px 20px 34px; }
+      h1 { font-size: 48px; max-width: 330px; }
+      .lede { font-size: 18px; }
+      .toolbar { padding: 10px 20px; flex-wrap: wrap; }
+      .search { flex-basis: 100%; }
+      .content { padding: 42px 20px 74px; }
+      .section { margin-bottom: 58px; }
+      .section-head { grid-template-columns: 1fr; gap: 4px; }
+      .essentials, .card-grid, .do-dont { grid-template-columns: 1fr; }
+      .card.wide { grid-column: auto; }
+      .essential { min-height: 175px; }
+      .signal-row { grid-template-columns: 1fr; gap: 5px; }
+      .myth { grid-template-columns: 1fr; gap: 5px; }
+      .source-row { grid-template-columns: 1fr; gap: 5px; }
+      .source-row p { grid-column: auto; }
+      .source-row .badge { width: max-content; margin: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <div><div class="aside-label">Canonical handbook</div><strong>Official Instagram guidance</strong></div>
+    <nav aria-label="Guide sections">
+      <a href="#core">Core model</a>
+      <a href="#ranking">Ranking & reach</a>
+      <a href="#reels">Reels</a>
+      <a href="#feed">Feed & carousels</a>
+      <a href="#stories">Stories & DMs</a>
+      <a href="#cadence">Cadence</a>
+      <a href="#discovery">Discovery</a>
+      <a href="#collabs">Collabs & tagging</a>
+      <a href="#workflow">Tools & workflow</a>
+      <a href="#originality">Originality</a>
+      <a href="#health">Account health</a>
+      <a href="#monetization">Monetization</a>
+      <a href="#changes">Changes & myths</a>
+      <a href="#sources">Source library</a>
+    </nav>
+    <div class="aside-foot">Reviewed Sep 24, 2026<br>792 official posts + 11 policy and product pages</div>
+  </aside>
+
+  <main>
+    <header class="hero">
+      <div class="hero-meta">CANONICAL REFERENCE · SEPT 2024–SEPT 2026</div>
+      <h1>Instagram creator guidance, in one place</h1>
+      <p class="lede">A practical synthesis of the official Instagram guidance available in the reviewed public sources on ranking, formats, discovery, originality, account health, and monetization—each claim traceable to a summarized source.</p>
+      <div class="stamp-row">
+        <span class="stamp">792 @mosseri + @creators posts reviewed</span>
+        <span class="stamp">81 guidance items consolidated</span>
+        <span class="stamp">11 official policy and product pages verified</span>
+        <span class="stamp">Updated Sep 24, 2026</span>
+      </div>
+    </header>
+
+    <div class="mobile-nav" aria-label="Jump to topic">
+      <a href="#core">Core</a><a href="#ranking">Ranking</a><a href="#reels">Reels</a><a href="#feed">Feed</a><a href="#stories">Stories</a><a href="#cadence">Cadence</a><a href="#discovery">Discovery</a><a href="#collabs">Collabs</a><a href="#workflow">Tools</a><a href="#originality">Originality</a><a href="#health">Health</a><a href="#monetization">Money</a><a href="#changes">Changes</a><a href="#sources">Sources</a>
+    </div>
+
+    <div class="toolbar" aria-label="Filter guidance">
+      <div class="search">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="search" type="search" placeholder="Search topics, formats or signals…" aria-label="Search guidance">
+      </div>
+    </div>
+
+    <div class="content" id="guide">
+      <section class="section searchable" id="core" data-tiers="verified">
+        <div class="section-head"><div class="section-no">01 / THE MODEL</div><h2>Start with three truths</h2></div>
+        <div class="essentials">
+          <article class="essential"><div class="big">There is no single algorithm.</div><p>Feed, Stories, Explore, Reels, Search and other surfaces rank for different viewing behaviors.</p></article>
+          <article class="essential"><div class="big">Sends unlock discovery.</div><p>Likes matter more for follower reach; sends matter more when Instagram evaluates non-follower reach.</p></article>
+          <article class="essential"><div class="big">Every Reel auditions.</div><p>A Reel is tested with a likely-to-enjoy audience and can expand with response—not because of follower count alone.</p></article>
+        </div>
+        <div class="callout"><strong>Working rule:</strong> make the topic legible to a stranger, win attention, hold it, then earn a meaningful action. Eligibility gets a post into consideration; it never guarantees distribution.</div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>The canonical model</h3><p>Instagram says each part of the app uses its own algorithm, tailored to how people use that surface. Reels distribution uses watch time, retention, shares, likes and comments, plus audience matching.</p><a class="source" href="https://about.instagram.com/blog/announcements/instagram-ranking-explained" target="_blank" rel="noopener">Instagram Ranking Explained ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Watch time, likes, and sends lead</h3><p>Mosseri identifies watch time, likes, and sends as the top ranking signals. Likes are slightly more important for connected reach; sends are slightly more important for unconnected reach.</p><a class="source" href="https://www.instagram.com/reel/DFFyRp-pINJ/" target="_blank" rel="noopener">@mosseri · Jan 21, 2025 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="ranking" data-tiers="verified">
+        <div class="section-head"><div class="section-no">02 / RANKING</div><h2>What the system predicts</h2></div>
+        <div class="card-grid">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Recommendations expand in stages</h3><p>A Reel is first shown to a small audience likely to enjoy it. Strong performers move to progressively larger groups. Instagram says this distributes on engagement, not only follower count.</p><a class="source" href="https://creators.instagram.com/blog/helping-creators-of-all-sizes-break-through" target="_blank" rel="noopener">Creators · Feb 26, 2025 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Read rates, not raw reach</h3><p>Use engagement rates in Insights to explain performance, separating connected reach from followers and unconnected reach from non-followers. Likes, comments, saves, sends, and watch time matter in different contexts.</p><a class="source" href="https://www.instagram.com/reel/DYzhl3iAXIo/" target="_blank" rel="noopener">@mosseri · May 26, 2026 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Feed AI scores distinct outcomes</h3>
+            <div class="signal-table">
+              <div class="signal-row"><strong><span class="priority">01</span> Enjoy</strong><p>Likes, comments, reshares, time spent and media type help predict whether someone will enjoy a post.</p></div>
+              <div class="signal-row"><strong><span class="priority">02</span> Send</strong><p>Informative content—news, product reviews, tutorials and how-tos—plus recency, time spent and share-sheet opens help predict DM sharing.</p></div>
+              <div class="signal-row"><strong><span class="priority">03</span> Continue</strong><p>Carousel completion, profile visits, sound-on behavior and whether the first post keeps someone in Feed are separate predictions.</p></div>
+            </div>
+            <a class="source" href="https://transparency.meta.com/features/explaining-ranking/ig-feed/" target="_blank" rel="noopener">Meta Transparency Center · updated Jun 29, 2026 ↗</a>
+          </article>
+        </div>
+        <div class="note" style="margin-top:14px">The Transparency Center says roughly 500 posts are scored per Feed session. Recommendation systems also consider topical similarity and a viewer’s history with accounts and formats.</div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>The three metrics to watch</h3><p>Mosseri’s concise Feb 2025 diagnostic: average watch time for Reels, like rate, and send rate. Read patterns in Insights without abandoning the voice or subject that makes the account distinct.</p><a class="source" href="https://www.instagram.com/reel/DGA489oxVLM/" target="_blank" rel="noopener">@mosseri · Feb 13, 2025 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Ranking is contextual, not deterministic</h3><p>Identical Reels can land differently because timing, competition, context, relevance, and audience response change. Instagram also says originality, recency, and “breaking” content matter beyond engagement.</p><a class="source" href="https://www.instagram.com/p/DY40JFDGyod/" target="_blank" rel="noopener">Same-Reel explanation · May 28, 2026 ↗</a><br><a class="source" href="https://www.instagram.com/reel/DdENi2fP59I/" target="_blank" rel="noopener">Ranking values · Sep 9, 2026 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Reach myths Instagram has rejected</h3><p>Saving as a draft does not affect distribution; interacting with similar content is not required; saying “link in bio” does not reduce reach; toggling a public account private and public does not boost reach; and deleting then reposting a flop is not a recovery tactic. Ranking receives small adjustments every day rather than rare, giant resets.</p><a class="source" href="https://www.instagram.com/reel/DGk8D9zRUj3/" target="_blank" rel="noopener">Drafts · Feb 27, 2025 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DNFwO_4RkLM/" target="_blank" rel="noopener">Interaction myth · Aug 8, 2025 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DMc4KPTReaB/" target="_blank" rel="noopener">Link in bio · Jul 23, 2025 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DbA4_Iaha7s/" target="_blank" rel="noopener">Private/public · Jul 20, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DaNZGV3Bckh/" target="_blank" rel="noopener">Delete/repost · Jun 30, 2026 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="reels" data-tiers="verified">
+        <div class="section-head"><div class="section-no">03 / REELS</div><h2>The official Reels playbook</h2></div>
+        <div class="card" data-tier="verified">
+          <span class="badge verified">● VERIFIED LIVE</span>
+          <div class="step"><div class="step-num">1</div><div><h3>Post regularly</h3><p>Every Reel can reach people who do not follow you. Instagram calls consistent publishing one of the most effective ways to grow, but gives no posts-per-week target.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div><h3>Make it stand alone</h3><p>A stranger should understand it without knowing you. Put a compelling hook in the first 3 seconds, then use View Rate in Insights to see what percentage kept watching.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div><h3>Use audio deliberately</h3><p>Audio can catch a new audience’s attention. Instagram also says audio on photos and carousels can help those posts be shown to more people.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div><h3>Keep experimenting</h3><p>Recommendations make individual-post reach less predictable. Trial Reels offer a non-follower-first test path before wider sharing.</p></div></div>
+          <a class="source" href="https://creators.instagram.com/blog/helping-creators-of-all-sizes-break-through" target="_blank" rel="noopener">Full Creators playbook · Feb 26, 2025 ↗</a>
+        </div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Capture, export, publish</h3><p>Edits supports capture/export up to 4K and 60 fps, with HDR where supported. Instagram’s best-quality recommendation is <strong>2K, HDR and 60 fps</strong>. Direct sharing from Edits gets priority processing so the first view receives the best available quality. Instagram also suggests its teleprompter for scripts and green screen for dynamic backgrounds.</p><a class="source" href="https://creators.instagram.com/blog/best-camera-settings-instagram-reels" target="_blank" rel="noopener">Camera & export settings · Apr 9, 2026 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Trial Reels mechanics</h3><p>Trial Reels show a Reel to non-followers first so a creator can test a new idea before deciding whether to share it with followers. Compare a Trial against other Trials, not against ordinary Reels.</p><a class="source" href="https://www.instagram.com/reel/DR2kmtTEQnJ/" target="_blank" rel="noopener">@creators · Dec 4, 2025 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Keep recommendation-eligible video to three minutes or less</h3><p>Mosseri’s recommendation checklist says videos intended for recommendation should be three minutes or less, alongside originality, audio, no watermarks, and good account standing.</p><a class="source" href="https://www.instagram.com/reel/DFK_lARJBVC/" target="_blank" rel="noopener">@mosseri · Jan 23, 2025 ↗</a></article>
+        </div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Engineer the opening and the full watch</h3><p>Use an immediate title or text hook that sets expectations from the first second. Then use retention and skip-rate charts—not intuition alone—to find where viewers leave and improve end-to-end viewing.</p><a class="source" href="https://www.instagram.com/p/DSVfWyBEZwE/" target="_blank" rel="noopener">Titles · Dec 16, 2025 ↗</a> · <a class="source" href="https://www.instagram.com/p/DNqcjSpx0dI/" target="_blank" rel="noopener">Retention charts · Aug 22, 2025 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Design for sound-off and distinction</h3><p>Make the video legible without audio; use angles, effects, and transitions only where they help differentiate the idea. A phone, a clear idea, and experimentation are enough to start—production polish is not the entry ticket.</p><a class="source" href="https://www.instagram.com/reel/DalNfTVJ_nC/" target="_blank" rel="noopener">Sound-off · Jul 9, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DbTUIoWRGAU/" target="_blank" rel="noopener">Start simply · Jul 27, 2026 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Benchmark Trial Reels correctly</h3><p>Because Trials begin with non-followers, compare them with other Trial Reels—not normal Reels shown to a mixed audience. Use them when testing a new idea, niche, or higher posting cadence.</p><a class="source" href="https://www.instagram.com/reel/DGS6hZnSCYL/" target="_blank" rel="noopener">@mosseri · Feb 20, 2025 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="feed" data-tiers="verified">
+        <div class="section-head"><div class="section-no">04 / FEED</div><h2>Feed posts and carousels</h2></div>
+        <div class="card-grid">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>What orders Feed</h3><p>Signals include the viewer’s likes, shares, reposts, saves and comments; post popularity; past interaction with the author; Threads activity; and Favorites.</p><a class="source" href="https://help.instagram.com/1986234648360433/" target="_blank" rel="noopener">How Instagram Feed Works ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>What powers suggested posts</h3><p>Instagram uses followed accounts, posts liked/saved/reposted/commented on, connections to the account or similar accounts, post popularity, and recent account interactions.</p><a class="source" href="https://help.instagram.com/381638392275939/" target="_blank" rel="noopener">Suggested posts ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Carousels have completion signals</h3><p>Feed predicts whether someone will swipe through a whole carousel using prior swipes, cards viewed, and the card count. Adding audio can also help photos and carousels reach more people.</p><a class="source" href="https://transparency.meta.com/features/explaining-ranking/ig-feed/" target="_blank" rel="noopener">Feed AI system ↗</a></article>
+        </div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Carousels often earn a second chance</h3><p>Mosseri says carousels often outperform single photos because they generate more interactions and may be resurfaced from a later card when the first impression gets no swipe. This is a tendency, not a guarantee.</p><a class="source" href="https://www.instagram.com/reel/DBOeUmTSmIC/" target="_blank" rel="noopener">@mosseri · Oct 17, 2024 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Treat the profile as a portfolio</h3><p>Pin an introductory Reel for new visitors, and reorder the profile grid to foreground strong work, clarify identity, and show brand partners what you make.</p><a class="source" href="https://www.instagram.com/reel/DSGBM1qEUlx/" target="_blank" rel="noopener">Pinned posts · Dec 10, 2025 ↗</a> · <a class="source" href="https://www.instagram.com/p/DZVLSAfG4vO/" target="_blank" rel="noopener">Grid reorder · Jun 8, 2026 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Music can change eligibility</h3><p>Instagram’s @creators account says photos and carousels with music are eligible for the Reels tab, creating an additional path to people who do not follow you.</p><a class="source" href="https://www.instagram.com/p/DBO8V2yx4vS/" target="_blank" rel="noopener">@creators · Oct 17, 2024 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="stories" data-tiers="verified">
+        <div class="section-head"><div class="section-no">05 / STORIES + DMs</div><h2>Relationship surfaces and sharing</h2></div>
+        <div class="card-grid">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Stories favor relationships</h3><p>Viewing history, engagement history and closeness to the author are the main signals. Instagram predicts whether someone will tap, like or reply; friends and close connections carry particular weight here.</p><a class="source" href="https://about.instagram.com/blog/announcements/instagram-ranking-explained" target="_blank" rel="noopener">Instagram Ranking Explained ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>DM sharing is a ranked outcome</h3><p>Instagram explicitly predicts whether a viewer will send a Feed post in a DM. Reels were being reshared more than 4.5 billion times per day across Instagram and Facebook in Feb 2025.</p><a class="source" href="https://creators.instagram.com/blog/helping-creators-of-all-sizes-break-through" target="_blank" rel="noopener">Creators · Feb 2025 ↗</a></article>
+        </div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Feed for breadth; Stories for depth</h3><p>Feed generally reaches more people. Stories are for the most passionate audience: timely moments, behind-the-scenes access, and day-in-the-life context. Ranking emphasizes tap, like, and reply likelihood.</p><a class="source" href="https://www.instagram.com/reel/DFYFb6xRTpU/" target="_blank" rel="noopener">@mosseri · Jan 28, 2025 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>The many-Stories penalty was a bug</h3><p>Reduced reach after posting many Stories was unintended and was fixed by Sep 2025. Do not limit useful Stories because of that old behavior.</p><a class="source" href="https://www.instagram.com/reel/DOgMqw_Dp4j/" target="_blank" rel="noopener">@mosseri · Sep 12, 2025 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Invite lightweight participation</h3><p>Use Story polls and comment replies to strengthen community. Reveal stickers can gate a hidden Story behind a DM; Broadcast Channels offer a deeper recurring connection surface.</p><a class="source" href="https://www.instagram.com/reel/DYfGlHLRrm8/" target="_blank" rel="noopener">Polls + replies · May 18, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DATlA8bvkIX/" target="_blank" rel="noopener">Reveal · Sep 24, 2024 ↗</a> · <a class="source" href="https://www.instagram.com/p/DDKUn4YJA6Y/" target="_blank" rel="noopener">Channels · Dec 4, 2024 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="cadence" data-tiers="verified">
+        <div class="section-head"><div class="section-no">06 / CADENCE</div><h2>Consistency without a magic quota</h2></div>
+        <div class="card-grid">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>What Instagram actually says</h3><p>“Post regularly” and “post consistently.” The logic is opportunity: every Reel can reach a new audience, so repeated publishing creates repeated chances to learn and be discovered.</p><a class="source" href="https://creators.instagram.com/blog/helping-creators-of-all-sizes-break-through" target="_blank" rel="noopener">Creators · Feb 26, 2025 ↗</a></article>
+        </div>
+        <div class="note" style="margin-top:14px"><strong>No universal number or clock time:</strong> Instagram prescribes no single daily/weekly frequency or best hour. Choose a sustainable cadence and use your own follower-activity Insights.</div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>More chances, within a sustainable system</h3><p>More posting generally creates more aggregate reach when quality holds, but Instagram’s recurring advice is to choose repeatable patterns that avoid burnout. Trial Reels can absorb experiments while frequency rises.</p><a class="source" href="https://www.instagram.com/reel/DFDVhsivBGa/" target="_blank" rel="noopener">Volume + quality · Jan 20, 2025 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DDPU_hfSgnZ/" target="_blank" rel="noopener">Sustainability · Dec 6, 2024 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Timing and publishing myths</h3><p>Scheduling a Reel does not hurt reach. Posts rank independently, so there is no need to wait for the last one to peak; avoid only posting back-to-back within a few hours. Use follower activity in Insights rather than a universal “best time.”</p><a class="source" href="https://www.instagram.com/reel/DWELQpFFJo-/" target="_blank" rel="noopener">Scheduling · Mar 19, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/p/DZ98T3Oj2Yx/" target="_blank" rel="noopener">Independent ranking · Jun 24, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DZpkZ4lAsS3/" target="_blank" rel="noopener">Best time · Jun 16, 2026 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="discovery" data-tiers="verified">
+        <div class="section-head"><div class="section-no">07 / DISCOVERY</div><h2>Hashtags are labels, not fuel</h2></div>
+        <div class="card-grid">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Use no more than five hashtags</h3><p>@creators announced a maximum of five hashtags per post or Reel in Dec 2025. Pair that limit with clear captions and specific subject matter; the reviewed official post does not promise a reach boost from hashtags.</p><a class="source" href="https://www.instagram.com/p/DSalTolEbvf/" target="_blank" rel="noopener">@creators · Dec 18, 2025 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Topic matching is real</h3><p>Instagram’s systems use captions, visuals, audio and user behavior among content signals. Feed AI also considers whether a post is a photo and how much text is overlaid. That supports clear topical framing—not keyword stuffing.</p><a class="source" href="https://transparency.meta.com/features/explaining-ranking/ig-feed/" target="_blank" rel="noopener">Feed AI system ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Make the topic easy to recognize</h3><p>Instagram’s own creator guidance connects clear captions, visuals, audio, and a consistent identity with search discovery and finding the right audience. Use content buckets and a distinctive style rather than keyword stuffing.</p><a class="source" href="https://www.instagram.com/p/Db_N-P6kbt2/" target="_blank" rel="noopener">Captions · Aug 13, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DYm08hHxJn8/" target="_blank" rel="noopener">Identity + content buckets · May 21, 2026 ↗</a></article>
+        </div>
+        <div class="note" style="margin-top:14px"><strong>What the official record does not support:</strong> the reviewed Instagram sources provide no caption-keyword-stuffing formula or guarantee that hashtags increase reach. The direct, current instruction found here is the five-hashtag maximum.</div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Write captions for people and retrieval</h3><p>@creators says captions can retain attention, spark conversation, improve Search discovery, and direct a next action. Optimize the profile’s searchability too, but no caption-keyword formula was provided in the reviewed post.</p><a class="source" href="https://www.instagram.com/p/Db_N-P6kbt2/" target="_blank" rel="noopener">Captions · Aug 13, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/p/DY5EXRukbsC/" target="_blank" rel="noopener">Profile search · May 28, 2026 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Translate with intent</h3><p>Enable translation before publishing when international accessibility matters. Bilingual captions and translated dubbing/lip-sync can help content cross language barriers; preserve meaning and voice rather than treating translation as a reach switch.</p><a class="source" href="https://www.instagram.com/reel/DT2qWBWgYuN/" target="_blank" rel="noopener">Translation · Jan 23, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/p/DaQqnngkRnv/" target="_blank" rel="noopener">Bilingual captions · Jul 1, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/p/DPmFj7mEQU7/" target="_blank" rel="noopener">Translated dubbing · Oct 9, 2025 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="collabs" data-tiers="verified">
+        <div class="section-head"><div class="section-no">08 / COLLABS</div><h2>Credit people with native tools</h2></div>
+        <div class="card-grid">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>When you helped make the work</h3><p>Use Collabs, Remix, or the paid partnership label for branded content. Remix can qualify as an original, material transformation when it adds a distinct perspective or real information.</p><a class="source" href="https://creators.instagram.com/blog/rewarding-original-creators-on-instagram/" target="_blank" rel="noopener">Original Creators Get Priority · Apr 30, 2026 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>When you are curating someone else’s work</h3><p>Share it to Stories or use Reposts so the original creator receives attribution. Do not download and re-upload it with a border, watermark, subtitles or caption credit and call that original.</p><a class="source" href="https://creators.instagram.com/blog/rewarding-original-creators-on-instagram/" target="_blank" rel="noopener">Originality and attribution guidance ↗</a></article>
+        </div>
+        <div class="note" style="margin-top:14px">Distribution rules do not replace copyright obligations. Instagram says creators remain responsible for obtaining necessary permissions.</div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Collabs combine audiences</h3><p>A Collab post or Reel can appear to multiple creators’ follower sets, and a collaborator can be added after publishing. Use this for genuinely shared work, not decorative tagging.</p><a class="source" href="https://www.instagram.com/reel/DRNMNP1D-Mq/" target="_blank" rel="noopener">@mosseri · Nov 18, 2025 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Make the account legible to partners</h3><p>Start repeatable series, use Collabs, and tag relevant brands. For brand deals, organically tag products you already use, make brand-compatible work, and treat the grid as a portfolio.</p><a class="source" href="https://www.instagram.com/reel/DZFjeHuRObD/" target="_blank" rel="noopener">Series + Collabs · Jun 2, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DXel0TUj5Qv/" target="_blank" rel="noopener">Brand portfolio · Apr 23, 2026 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="workflow" data-tiers="verified">
+        <div class="section-head"><div class="section-no">09 / WORKFLOW</div><h2>Use the native feedback loop</h2></div>
+        <div class="card-grid">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Measure, compare, export</h3><p>Use Insights to understand performance, compare Reels, inspect audience data, and export reports. For timing, Edits audience Insights shows when current followers are most active.</p><a class="source" href="https://www.instagram.com/reel/DVgpdBYEW6n/" target="_blank" rel="noopener">Insights · Mar 5, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/p/DZsN8vqG06x/" target="_blank" rel="noopener">Compare + export · Jun 17, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DcOecwpRbfi/" target="_blank" rel="noopener">Audience timing · Aug 19, 2026 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Plan without superstition</h3><p>Instagram explicitly promotes Scheduler, Drafts, Crosspost, and Edits caption tooling as workflow aids. Cross-posting to Instagram and Facebook can find new audiences and monetization opportunities.</p><a class="source" href="https://www.instagram.com/p/DWRaiVRERTP/" target="_blank" rel="noopener">Workflow tools · Mar 24, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DaS9OzKxHk-/" target="_blank" rel="noopener">Cross-post · Jul 2, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DTNuZ3jkSzZ/" target="_blank" rel="noopener">Caption editor · Jan 7, 2026 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Know the Insights coverage gap</h3><p>As of Apr 24, 2026, the updated engagement-rate views did not support Collabs, Trial Reels, cross-posts, or boosted posts. Do not compare absent or differently defined measurements as though they were equivalent.</p><a class="source" href="https://www.instagram.com/p/DXhNFjCkTyX/" target="_blank" rel="noopener">@creators · Apr 24, 2026 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Pivot without discarding the audience</h3><p>When changing topics, usually keep the account: test first, explain what is changing, preserve your voice and production values, and bridge old and new subjects. Link related Reels to form series and content hubs.</p><a class="source" href="https://www.instagram.com/reel/DJrNO0xB2vw/" target="_blank" rel="noopener">Keep the account · May 15, 2025 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DZaTiHcPrmz/" target="_blank" rel="noopener">Bridge the pivot · Jun 10, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DYSDtxyvQC7/" target="_blank" rel="noopener">Linked Reels · May 13, 2026 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="originality" data-tiers="verified">
+        <div class="section-head"><div class="section-no">10 / ORIGINALITY</div><h2>Originality is a distribution rule</h2></div>
+        <div class="do-dont">
+          <article class="column do" data-tier="verified"><h3>Counts as original</h3><ul><li>Photos or videos you took</li><li>A designed photo series, how-to or visual story</li><li>Material edits that add information or a distinct perspective</li><li>On-content text or graphics that provide new information</li><li>A Remix that meaningfully transforms the source</li></ul></article>
+          <article class="column dont" data-tier="verified"><h3>Does not count</h3><ul><li>Re-uploading someone else’s work</li><li>Adding only a border or watermark</li><li>Adding only subtitles</li><li>Credit in the caption without creative input</li><li>Minor edits that merely restate the source</li></ul></article>
+        </div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Current recommendation penalty</h3><p>As of Apr 30, 2026, accounts that primarily post unoriginal Reels, photos or carousels are removed from recommendation surfaces. Followers can still see the content. Instagram said 75% of US recommendations were then coming from original posts.</p></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Recovery path</h3><p>An account can become eligible again when most of its recent posts across a rolling 30-day period are original. Check and appeal through Account Status.</p></article>
+          <article class="card wide" data-tier="verified"><a class="source" style="margin-top:0" href="https://creators.instagram.com/blog/rewarding-original-creators-on-instagram/" target="_blank" rel="noopener">Read the current official originality policy · Apr 30, 2026 ↗</a></article>
+        </div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>External editing is allowed</h3><p>Editing in another app does not hurt reach. The stated issue is leaving that app’s watermark or wordmark on the Reel—not the editor itself.</p><a class="source" href="https://www.instagram.com/p/DcLq4DbmxrJ/" target="_blank" rel="noopener">@mosseri · Aug 18, 2026 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Build a recognizable point of view</h3><p>Define identity and content buckets, then develop a distinctive visual and editing language. Stay authentic rather than chasing every trend, view, or follower spike; durable communities recognize the creator in the work.</p><a class="source" href="https://www.instagram.com/reel/DYm08hHxJn8/" target="_blank" rel="noopener">Identity · May 21, 2026 ↗</a> · <a class="source" href="https://www.instagram.com/reel/DbtGW5iP9dy/" target="_blank" rel="noopener">Authenticity · Aug 6, 2026 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="health" data-tiers="verified">
+        <div class="section-head"><div class="section-no">11 / ACCOUNT HEALTH</div><h2>Eligibility before optimization</h2></div>
+        <div class="card-grid">
+          <article class="card wide" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>The Account Status workflow</h3>
+            <div class="step"><div class="step-num">1</div><div><strong>Check recommendation eligibility</strong><p>Professional accounts can see whether content—or profile elements such as photo or bio—conflicts with Recommendations Guidelines.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div><strong>Inspect the exact issue</strong><p>Account Status identifies content affecting recommendations or feature access and surfaces Community Standards restrictions.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div><strong>Edit, remove or appeal</strong><p>Use “Disagree with decision” or request review rather than guessing why distribution changed. Repeated Community Standards violations can lead to account loss, usually after warnings.</p></div></div>
+            <a class="source" href="https://help.instagram.com/338481628002750/" target="_blank" rel="noopener">Check your Account Status ↗</a>
+          </article>
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Ineligible means no discovery</h3><p>If a public account is not eligible, none of its content can be recommended to non-followers—even if individual posts are otherwise allowed. Followers may still see it. Eligibility itself never guarantees recommendation.</p><a class="source" href="https://help.instagram.com/653964212890722" target="_blank" rel="noopener">Recommendation eligibility ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Where recommendations can appear</h3><p>Eligible public-account content may be recommended in Reels, Feed, Explore, Search and Suggested Accounts.</p><a class="source" href="https://help.instagram.com/653964212890722" target="_blank" rel="noopener">Eligibility scope ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Content and account patterns excluded from recommendations</h3>
+            <div class="signal-table">
+              <div class="signal-row"><strong>Safety</strong><p>Self-harm, suicide or eating-disorder content; violence; sexually explicit or suggestive content; and regulated products including tobacco, vaping, alcohol, firearms, drugs, weight-loss products/services and cosmetic procedures.</p></div>
+              <div class="signal-row"><strong>Publishing quality</strong><p>Unoriginal content with only minor edits; long captions unrelated to the underlying content; and coordinated comment networks intended to inflate distribution.</p></div>
+              <div class="signal-row"><strong>Integrity</strong><p>False or misleading content, purchased likes or misleading follower-building, repeat fact-check failures, and accounts barred from advertising.</p></div>
+              <div class="signal-row"><strong>Profiles</strong><p>Non-recommendable material in a name, username or bio; regular age-inappropriate content; and repeated recent content prominently featuring a photorealistic AI-generated persona.</p></div>
+            </div>
+            <a class="source" href="https://help.instagram.com/313829416281232/" target="_blank" rel="noopener">Recommendations Guidelines ↗</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="monetization" data-tiers="verified">
+        <div class="section-head"><div class="section-no">12 / MONETIZATION</div><h2>Earn on a compliant foundation</h2></div>
+        <div class="card-grid">
+          <article class="card" data-tier="verified"><span class="badge verified">● VERIFIED LIVE</span><h3>Instagram’s creator tools</h3><p>Subscriptions, Partnership Ads, Creator Marketplace, Gifts, Badges and Bonuses are listed in Instagram’s creator resources. Availability and eligibility can vary.</p><a class="source" href="https://creators.instagram.com/blog" target="_blank" rel="noopener">Instagram for Creators ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Start in Best Practices</h3><p>The Professional Dashboard’s Best Practices hub centralizes Instagram’s current guidance across creation, engagement, reach, monetization, and guidelines. Account- and market-specific eligibility still needs to be checked in-app.</p><a class="source" href="https://www.instagram.com/reel/DAlclkbvuiF/" target="_blank" rel="noopener">@mosseri · Oct 1, 2024 ↗</a></article>
+          <article class="card wide" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Affiliate product tags in Reels</h3><p>Instagram announced that affiliate product links in Reels can earn commission on resulting sales. Availability and eligibility vary, so confirm the option in the creation flow.</p><a class="source" href="https://www.instagram.com/p/DWyhjRhEZ2i/" target="_blank" rel="noopener">@mosseri · Apr 6, 2026 ↗</a></article>
+        </div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POST</span><h3>Partnership labels do not reduce reach</h3><p>Mosseri says sponsored or partnership labeling is not downranked. Use the disclosure tools when required rather than hiding a commercial relationship.</p><a class="source" href="https://www.instagram.com/reel/DCO9CdOTR8f/" target="_blank" rel="noopener">@mosseri · Nov 11, 2024 ↗</a></article>
+          <article class="card" data-tier="verified"><span class="badge verified">● OFFICIAL POSTS</span><h3>Partnership Ads and affiliate links</h3><p>Partnership Ads can amplify creator–brand work; affiliate product tags in Reels can earn commission on resulting sales. Availability and eligibility vary by market and account.</p><a class="source" href="https://www.instagram.com/p/DRxEWbEEciL/" target="_blank" rel="noopener">Partnership Ads · Dec 2, 2025 ↗</a> · <a class="source" href="https://www.instagram.com/p/DWyhjRhEZ2i/" target="_blank" rel="noopener">Affiliate links · Apr 6, 2026 ↗</a></article>
+        </div>
+      </section>
+
+      <section class="section searchable" id="changes" data-tiers="verified">
+        <div class="section-head"><div class="section-no">13 / CHANGELOG</div><h2>What changed—and what did not</h2></div>
+        <div class="timeline">
+          <article class="event"><time>APR 2024</time><p><strong>Originality enforcement starts with Reels.</strong> Instagram prioritizes originals over identical reposts; repeat aggregators can lose recommendation eligibility.</p></article>
+          <article class="event"><time>DEC 2024</time><p><strong>Trial Reels launch; hashtag following ends.</strong> Professional accounts get a non-follower-first testing path.</p></article>
+          <article class="event"><time>JAN 2025</time><p><strong>Recommendation checklist is restated.</strong> Use original content, remove watermarks, add audio, keep videos to three minutes or less, and keep the account in good standing.</p></article>
+          <article class="event"><time>DEC 2025</time><p><strong>Hashtags are capped at five.</strong> @creators sets a maximum of five hashtags per post or Reel.</p></article>
+          <article class="event"><time>APR 2026</time><p><strong>Originality expands.</strong> Photos and carousels join Reels under the unoriginal-content recommendation policy; “Your Algorithm” expands to Explore.</p></article>
+          <article class="event"><time>SEP 2025</time><p><strong>The many-Stories reach bug is fixed.</strong> Earlier advice to hold back after posting many Stories no longer applies.</p></article>
+          <article class="event"><time>MAR–JUN 2026</time><p><strong>Workflow myths are closed.</strong> Scheduling does not hurt reach; posts rank independently; there is no universal best posting time; grid reordering becomes available.</p></article>
+          <article class="event"><time>AUG–SEP 2026</time><p><strong>External-editing and ranking language are clarified.</strong> Other editors are fine without their wordmarks; Mosseri emphasizes originality, recency, breaking content, and the followed/not-followed split.</p></article>
+        </div>
+        <div class="card" style="margin-top:24px">
+          <h3>Common claims checked against the record</h3>
+          <div class="myth"><div class="verdict">NOT SUPPORTED</div><p><strong>“Post exactly X times per week” or “at the universal best time.”</strong> Instagram says regular and consistent, but gives no canonical quota or universal posting time here.</p></div>
+          <div class="myth"><div class="verdict">OUTDATED</div><p><strong>“Use 30 hashtags.”</strong> The current cap is five; Instagram says hashtags aid search rather than directly driving reach.</p></div>
+          <div class="myth"><div class="verdict">FALSE</div><p><strong>“Follower count controls distribution.”</strong> Reels are explicitly tested and expanded based on audience response.</p></div>
+          <div class="myth"><div class="verdict">INCOMPLETE</div><p><strong>“Watch percentage is all that matters.”</strong> Instagram also evaluates total seconds watched, retention, sends, likes and comments.</p></div>
+          <div class="myth"><div class="verdict">NOT FOUND</div><p><strong>“Keywords in captions are the official growth hack.”</strong> Topic matching is official; keyword stuffing was not found in Instagram’s recent guidance.</p></div>
+          <div class="myth"><div class="verdict">NOT FOUND</div><p><strong>“Carousels always beat single photos.”</strong> Carousel completion is a real prediction, but no universal format-winner rule was found.</p></div>
+          <div class="myth"><div class="verdict">FALSE</div><p><strong>“Scheduling, drafts, external editing, or saying ‘link in bio’ hurts reach.”</strong> Instagram has explicitly rejected each claim; only other-app watermarks/wordmarks are the stated external-editor issue.</p></div>
+          <div class="myth"><div class="verdict">FALSE</div><p><strong>“Wait for a post to peak before publishing again.”</strong> Posts rank independently. Avoid posting only within a few hours of the last post.</p></div>
+          <div class="myth"><div class="verdict">DISALLOWED</div><p><strong>“Pods and purchased engagement help distribution.”</strong> Coordinated comment networks and purchasing likes are recommendation risks, not durable growth tactics.</p></div>
+        </div>
+      </section>
+
+      <section class="section searchable" id="sources" data-tiers="verified">
+        <div class="section-head"><div class="section-no">14 / PROVENANCE</div><h2>Source library and coverage gaps</h2></div>
+        <div class="note" style="margin-bottom:18px"><strong>VERIFIED LIVE</strong> means an official Instagram, Help Center, Creators, or Meta page was read directly on Sep 24, 2026. <strong>OFFICIAL POST</strong> means caption/post data from @mosseri or @creators was reviewed across the complete two-year account pull (255 + 537 posts). Every guidance link in this handbook now points to an official Instagram or Meta source.</div>
+        <div class="card sources">
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Creators: Break through</strong><p>Reels distribution, signals, consistency, 3-second hook, View Rate, audio, Trial Reels, 4.5B daily reshares.</p><a href="https://creators.instagram.com/blog/helping-creators-of-all-sizes-break-through" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Creators: Originality</strong><p>Originality definition, aggregator penalties, 30-day recovery, Collabs/Remix/Reposts, 75% US original recommendations.</p><a href="https://creators.instagram.com/blog/rewarding-original-creators-on-instagram/" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Creators: Video quality</strong><p>Capture/export limits, recommended 2K HDR 60 fps, Edits priority processing, teleprompter and green screen.</p><a href="https://creators.instagram.com/blog/best-camera-settings-instagram-reels" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Creators blog index</strong><p>Official announcement dates and listed monetization tools.</p><a href="https://creators.instagram.com/blog" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Account Status</strong><p>Restrictions, offending content, profile eligibility, edit/remove, appeal and review flows.</p><a href="https://help.instagram.com/338481628002750/" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Recommendation eligibility</strong><p>Public-account scope, surfaces, follower/non-follower distinction, and account-level ineligibility.</p><a href="https://help.instagram.com/653964212890722" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Recommendations Guidelines</strong><p>Safety, low-quality publishing, misinformation, manipulation and account-level exclusions.</p><a href="https://help.instagram.com/313829416281232/" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Suggested posts</strong><p>Viewer activity, account connections, popularity, recency and Threads signals.</p><a href="https://help.instagram.com/381638392275939/" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Feed order</strong><p>Likes, shares, reposts, saves, comments, author interaction, Threads activity and Favorites.</p><a href="https://help.instagram.com/1986234648360433/" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Feed AI system</strong><p>Detailed predictions for enjoyment, DM shares, carousel completion, profiles, sound and session retention.</p><a href="https://transparency.meta.com/features/explaining-ranking/ig-feed/" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="source-row" data-tier="verified"><span class="badge verified">VERIFIED</span><strong>Ranking Explained</strong><p>Canonical no-single-algorithm model and Stories signals.</p><a href="https://about.instagram.com/blog/announcements/instagram-ranking-explained" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <span class="badge verified">OFFICIAL POST INDEX</span>
+          <h3>@mosseri — direct guidance posts reviewed</h3>
+          <p>Ranking and reach: <a class="source" href="https://www.instagram.com/reel/DFFyRp-pINJ/" target="_blank" rel="noopener">top signals</a>, <a class="source" href="https://www.instagram.com/reel/DYzhl3iAXIo/" target="_blank" rel="noopener">connected vs unconnected</a>, <a class="source" href="https://www.instagram.com/reel/DFp_Er8voYN/" target="_blank" rel="noopener">limited-reach checklist</a>, <a class="source" href="https://www.instagram.com/reel/DIBjMYFRCga/" target="_blank" rel="noopener">daily ranking changes</a>. Publishing: <a class="source" href="https://www.instagram.com/reel/DFDVhsivBGa/" target="_blank" rel="noopener">frequency</a>, <a class="source" href="https://www.instagram.com/reel/DWELQpFFJo-/" target="_blank" rel="noopener">scheduling</a>, <a class="source" href="https://www.instagram.com/p/DZ98T3Oj2Yx/" target="_blank" rel="noopener">post spacing</a>. Formats: <a class="source" href="https://www.instagram.com/reel/DA0ua3-yuDg/" target="_blank" rel="noopener">3-second hooks</a>, <a class="source" href="https://www.instagram.com/reel/DFK_lARJBVC/" target="_blank" rel="noopener">five recommendation rules</a>, <a class="source" href="https://www.instagram.com/reel/DRNMNP1D-Mq/" target="_blank" rel="noopener">Collabs</a>, <a class="source" href="https://www.instagram.com/reel/DFYFb6xRTpU/" target="_blank" rel="noopener">Stories vs Feed</a>. Each is summarized in the relevant section above.</p>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <span class="badge verified">OFFICIAL POST INDEX</span>
+          <h3>@creators — direct guidance posts reviewed</h3>
+          <p>Creation: <a class="source" href="https://www.instagram.com/reel/DalNfTVJ_nC/" target="_blank" rel="noopener">sound-off video</a>, <a class="source" href="https://www.instagram.com/p/DNqcjSpx0dI/" target="_blank" rel="noopener">retention charts</a>, <a class="source" href="https://www.instagram.com/p/DSVfWyBEZwE/" target="_blank" rel="noopener">opening titles</a>. Discovery: <a class="source" href="https://www.instagram.com/p/DSalTolEbvf/" target="_blank" rel="noopener">five hashtags</a>, <a class="source" href="https://www.instagram.com/p/Db_N-P6kbt2/" target="_blank" rel="noopener">caption roles</a>, <a class="source" href="https://www.instagram.com/p/DaQqnngkRnv/" target="_blank" rel="noopener">bilingual captions</a>. Workflow: <a class="source" href="https://www.instagram.com/p/DWRaiVRERTP/" target="_blank" rel="noopener">Insights/Scheduler/Drafts/Crosspost</a>, <a class="source" href="https://www.instagram.com/p/DXhNFjCkTyX/" target="_blank" rel="noopener">Insights coverage gap</a>, <a class="source" href="https://www.instagram.com/p/DZVLSAfG4vO/" target="_blank" rel="noopener">grid reorder</a>. Community and business: <a class="source" href="https://www.instagram.com/reel/DYfGlHLRrm8/" target="_blank" rel="noopener">polls/replies</a>, <a class="source" href="https://www.instagram.com/reel/DXel0TUj5Qv/" target="_blank" rel="noopener">brand portfolio</a>, <a class="source" href="https://www.instagram.com/p/DRxEWbEEciL/" target="_blank" rel="noopener">Partnership Ads</a>.</p>
+        </div>
+        <div class="card-grid" style="margin-top:14px">
+          <article class="card"><h3>Instagram account coverage</h3><p>The complete two-year pull covered 537 @creators posts and 255 @mosseri posts through Sep 24, 2026. Captions and post metadata were reviewed; visual-only slide/video details absent from captions were not inferred.</p></article>
+          <article class="card"><h3>Policy and launch gaps</h3><p>Official monetization-policy text was not directly opened in this review. Eligibility and regional availability for monetization, Trial Reels, translations, and other tools must be confirmed in the product.</p></article>
+          <article class="card wide"><h3>Questions still open</h3><p>No reviewed official source established an ideal posts-per-week number, a universal best posting time, a caption keyword-stuffing formula, or a safe engagement-pod strategy. Carousels often outperform photos according to Mosseri, but not universally. Product availability must be checked in-app.</p></article>
+        </div>
+      </section>
+
+      <div class="empty" id="empty">No guidance matched that search.</div>
+      <footer>Coverage: 792 posts across @mosseri and @creators (Sep 24, 2024–Sep 24, 2026), plus the reviewed official Instagram, Help Center, Creators, and Meta Transparency pages. Product and policy details change; use the linked Help Center and Account Status pages for account-specific decisions.</footer>
+    </div>
+  </main>
+</div>
+<script>
+(function () {
+  var search = document.getElementById('search');
+  var filters = Array.prototype.slice.call(document.querySelectorAll('.filter'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.searchable'));
+  var active = null;
+
+  function applyFilters() {
+    var q = search.value.trim().toLowerCase();
+    var shown = 0;
+    sections.forEach(function (section) {
+      var tiers = (section.dataset.tiers || '').split(' ');
+      var tierMatch = !active || tiers.indexOf(active) !== -1;
+      var textMatch = !q || section.textContent.toLowerCase().indexOf(q) !== -1;
+      var visible = tierMatch && textMatch;
+      section.classList.toggle('hidden', !visible);
+      if (visible) shown++;
+    });
+    document.getElementById('empty').classList.toggle('show', shown === 0);
+  }
+
+  filters.forEach(function (button) {
+    button.addEventListener('click', function () {
+      var selected = button.dataset.filter;
+      active = active === selected ? null : selected;
+      filters.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.filter === active)); });
+      applyFilters();
+    });
+  });
+  search.addEventListener('input', applyFilters);
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('aside nav a'));
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(function (link) { link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id); });
+      }
+    });
+  }, { rootMargin: '-20% 0px -68% 0px' });
+  sections.forEach(function (section) { observer.observe(section); });
+})();
+</script>
+</body>
+</html>
